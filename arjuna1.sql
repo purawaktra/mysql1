@@ -1,0 +1,14 @@
+create schema arjuna1;
+use arjuna1;
+CREATE USER 'arjuna1'@'%' IDENTIFIED BY 'rWHtKFqi9a9jGASsB6tLIeiG';
+GRANT INSERT, UPDATE, DELETE, SELECT ON arjuna1.* TO 'arjuna1'@'%';
+
+create table sessions (
+    session_id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+    session_hash TEXT NOT NULL,
+    account_id INT UNSIGNED NOT NULL,
+    issuer VARCHAR(20) NOT NULL,
+    audience VARCHAR(20) NOT NULL,
+    issued_at DATETIME NOT NULL,
+    expire_at DATETIME NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
