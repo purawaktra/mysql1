@@ -12,8 +12,9 @@ create table accounts(
     province SMALLINT REFERENCES provinces(province_id),
     zipcode VARCHAR(5),
     email_address VARCHAR(255) NOT NULL,
-    phone_number TINYINT
+    phone_number VARCHAR(20)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+drop table accounts;
 
 create table cities(
     city_id SMALLINT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
@@ -27,11 +28,11 @@ create table provinces(
 )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 create table credentials(
-    credential_id TINYINT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
-    account_id INT UNSIGNED REFERENCES accounts(account_id),
+    account_id INT UNSIGNED PRIMARY KEY REFERENCES accounts(account_id) ,
     password_hash TEXT NOT NULL,
-    salt TEXT
+    salt VARCHAR(10)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
 
 INSERT INTO provinces (name) VALUES
   ('Aceh'),
