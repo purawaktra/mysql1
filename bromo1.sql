@@ -8,24 +8,13 @@ create table accounts(
     first_name VARCHAR(50) NOT NULL,
     last_name VARCHAR(50) NOT NULL,
     address VARCHAR(255),
-    city TINYINT REFERENCES cities(city_id),
-    province SMALLINT REFERENCES provinces(province_id),
+    city TINYINT,
+    province SMALLINT,
     zipcode VARCHAR(5),
     email_address VARCHAR(255) NOT NULL,
     phone_number VARCHAR(20)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 drop table accounts;
-
-create table cities(
-    city_id SMALLINT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
-    name VARCHAR(50),
-    province TINYINT REFERENCES provinces(province_id)
-)ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
-create table provinces(
-    province_id TINYINT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
-    name VARCHAR(50)
-)ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 create table credentials(
     account_id INT UNSIGNED PRIMARY KEY REFERENCES accounts(account_id) ,
@@ -34,39 +23,5 @@ create table credentials(
 )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 
-INSERT INTO provinces (name) VALUES
-  ('Aceh'),
-  ('Bali'),
-  ('Bangka Belitung'),
-  ('Banten'),
-  ('Bengkulu'),
-  ('Gorontalo'),
-  ('Jakarta'),
-  ('Jambi'),
-  ('Jawa Barat'),
-  ('Jawa Tengah'),
-  ('Jawa Timur'),
-  ('Kalimantan Barat'),
-  ('Kalimantan Selatan'),
-  ('Kalimantan Tengah'),
-  ('Kalimantan Timur'),
-  ('Kalimantan Utara'),
-  ('Kepulauan Riau'),
-  ('Lampung'),
-  ('Maluku'),
-  ('Maluku Utara'),
-  ('Nusa Tenggara Barat'),
-  ('Nusa Tenggara Timur'),
-  ('Papua'),
-  ('Papua Barat'),
-  ('Riau'),
-  ('Sulawesi Barat'),
-  ('Sulawesi Selatan'),
-  ('Sulawesi Tengah'),
-  ('Sulawesi Tenggara'),
-  ('Sulawesi Utara'),
-  ('Sumatera Barat'),
-  ('Sumatera Selatan'),
-  ('Sumatera Utara'),
-  ('Yogyakarta');
+
 
