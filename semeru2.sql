@@ -3,19 +3,11 @@ use semeru2;
 CREATE USER 'semeru2'@'%' IDENTIFIED BY 'UeAHjOO84PuaJib3chLbAL5v';
 GRANT INSERT, UPDATE, DELETE, SELECT ON semeru2.* TO 'semeru2'@'%';
 
-create table accounts(
-     account_id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
-     first_name VARCHAR(50) NOT NULL,
-     last_name VARCHAR(50) NOT NULL,
-     address VARCHAR(255),
-     city TINYINT,
-     province SMALLINT,
-     zipcode VARCHAR(5),
-     email_address VARCHAR(255) NOT NULL,
-     phone_number VARCHAR(20)
-)ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
-create table profile_picture(
-    account_id INT UNSIGNED PRIMARY KEY,
-    object TEXT
-)
+create table credentials(
+    account_id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    email_address VARCHAR(64) NOT NULL UNIQUE,
+    password VARCHAR(64) NOT NULL,
+    salt VARCHAR(8) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    modified_at TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+)ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 AUTO_INCREMENT=100000;
